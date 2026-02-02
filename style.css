@@ -252,3 +252,47 @@ footer {
     justify-content: center;
     text-align: center;
 }
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    section {
+        padding: 60px 5%;
+    }
+
+    .hero {
+        padding: 80px 5%;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem; 
+    }
+
+    .hero-image img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .about-content-box {
+        padding: 30px 20px; 
+        border-radius: 30px;
+        width: 90%; 
+    }
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav {
+        margin-top: 15px;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 0.9rem;
+    }
+}
