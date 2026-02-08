@@ -51,38 +51,66 @@ Fashion and digital art influence my creative process, especially the creativity
         </div>
     </section>
 
-    <section id="work">
+<section id="work">
     <div class="container">
         <h2>Featured Work</h2>
-        <div class="grid">
-            <div class="work-box">
-                <div class="placeholder-border"></div>
-                <p class="tbd-text">Project 01</p>
+        <div class="slider-wrapper">
+             <button class="nav-btn prev" onclick="document.getElementById('workGrid').scrollBy({left: -330, behavior: 'smooth'})">❮</button>
+
+            <div class="grid" id="workGrid">
+                <div class="work-box" onclick="openLightbox(this)">
+                    <div class="image-container">
+                        <img src="week2hw1.jpg" alt="Thomas Hunter 3rd floor Hallway" class="featured-img">
+                        <div class="hover-overlay">
+                            <p class="short-desc">Third-floor hallway of the Thomas Hunter building.
+                            <br>1920px x 1080px
+                            </p>
+                        </div>
+                    </div>
+                    <p class="tbd-text">Week 2: Thomas Hunter</p>
+                    <div class="full-description" style="display:none;">I chose this photo because I thought the ceiling lights looked visually interesting and created a strong sense of repetition. The lights naturally draw the viewer’s eye down the hallway and give the image a clear sense of depth. When I first took the photo, it was slightly blurry, so I refined it by adjusting the focus and sharpening the image to make the details clearer. Cleaning up the image helped emphasize the structure of the hallway and made the lighting stand out more, which improved the overall composition.</div>
+                </div>
+
+                <div class="work-box" onclick="openLightbox(this)">
+                    <div class="image-container">
+                        <img src="week2hw2.jpg" alt="View of 3rd floor skybridge" class="featured-img">
+                        <div class="hover-overlay">
+                            <p class="short-desc">View of Hunter College's third-floor sky bridge.
+                            <br>5"x7"
+                            </p>
+                        </div>
+                    </div>
+                    <p class="tbd-text">Week 2: Sky Bridge</p>
+                    <div class="full-description" style="display:none;"> I found this photo interesting because I liked the overall scene and the way the different elements came together, especially the buildings and street. I focused on color and contrast to make the photo feel more dynamic. I edited the image to make the colors more vibrant and to increase contrast, which helped different elements in the scene stand out from each other. The stronger colors make the image feel more engaging, while the contrast helps guide the viewer’s attention through the frame. These adjustments helped the photo look less bland and madee the composition more visually impactful.</div>
+                </div>
+
+                <div class="work-box">
+                    <div class="placeholder-border"></div>
+                    <p class="tbd-text">Project 03</p>
+                </div>
+
+                <div class="work-box">
+                    <div class="placeholder-border"></div>
+                    <p class="tbd-text">Project 04</p>
+                </div>
+
+                <div class="work-box">
+                    <div class="placeholder-border"></div>
+                    <p class="tbd-text">Project 05</p>
+                </div>
+
+                <div class="work-box">
+                    <div class="placeholder-border"></div>
+                    <p class="tbd-text">Project 06</p>
+                </div>
             </div>
-            <div class="work-box">
-                <div class="placeholder-border"></div>
-                <p class="tbd-text">Project 02</p>
-            </div>
-            <div class="work-box">
-                <div class="placeholder-border"></div>
-                <p class="tbd-text">Project 03</p>
-            </div>
-            <div class="work-box">
-                <div class="placeholder-border"></div>
-                <p class="tbd-text">Project 04</p>
-            </div>
-            <div class="work-box">
-                <div class="placeholder-border"></div>
-                <p class="tbd-text">Project 05</p>
-            </div>
-            <div class="work-box">
-                <div class="placeholder-border"></div>
-                <p class="tbd-text">Project 06</p>
-            </div>
+
+            <button class="nav-btn next" onclick="document.getElementById('workGrid').scrollBy({left: 330, behavior: 'smooth'})">❯</button>
         </div>
         <p style="color: var(--primary-pink); font-size: 0.9rem; margin-top: 25px; opacity: 0.8;">← Swipe to explore →</p>
     </div>
 </section>
+
 
     <section id="assignments">
     <div class="container">
@@ -100,7 +128,7 @@ Fashion and digital art influence my creative process, especially the creativity
                 <div class="work-box">
                     <a href="week1.html" class="assignment-link">
                         <div class="assignment-card">
-                            <h3>Week 1: Plato's Cave</h3>
+                            <h3>Plato's Cave</h3>
                             <p>Analysis and personal reflection on the reading.</p>
                             <p class="due">Due: February 9th →</p>
                         </div>
@@ -111,7 +139,7 @@ Fashion and digital art influence my creative process, especially the creativity
                 <div class="work-box">
                     <!-- <a href="week2.html" class="assignment-link"> --->
                         <div class="assignment-card">
-                            <h3>Week 2: Assignment</h3>
+                            <h3>Assignment</h3>
                             <p>Coming soon</p>
                             <p class="due">Due: TBD →</p>
                         </div>
@@ -122,7 +150,7 @@ Fashion and digital art influence my creative process, especially the creativity
                 <div class="work-box">
                     <!-- <a href="week3.html" class="assignment-link"> --->
                         <div class="assignment-card">
-                            <h3>Week 3: Assignment</h3>
+                            <h3>Assignment</h3>
                             <p>Coming soon</p>
                             <p class="due">Due: TBD →</p>
                         </div>
@@ -133,7 +161,7 @@ Fashion and digital art influence my creative process, especially the creativity
                 <div class="work-box">
                     <!-- <a href="week4.html" class="assignment-link"> --->
                         <div class="assignment-card">
-                            <h3>Week 4: Assignment</h3>
+                            <h3>Assignment</h3>
                             <p>Coming soon</p>
                             <p class="due">Due: TBD →</p>
                         </div>
@@ -144,7 +172,7 @@ Fashion and digital art influence my creative process, especially the creativity
                 <div class="work-box">
                     <!-- <a href="week5.html" class="assignment-link"> --->
                         <div class="assignment-card">
-                            <h3>Week 5: Assignment</h3>
+                            <h3>Assignment</h3>
                             <p>Coming soon</p>
                             <p class="due">Due: TBD →</p>
                         </div>
@@ -155,7 +183,7 @@ Fashion and digital art influence my creative process, especially the creativity
                 <div class="work-box">
                     <!-- <a href="week6.html" class="assignment-link"> --->
                         <div class="assignment-card">
-                            <h3>Week 6: Assignment</h3>
+                            <h3>Assignment</h3>
                             <p>Coming soon</p>
                             <p class="due">Due: TBD →</p>
                         </div>
@@ -185,5 +213,16 @@ Fashion and digital art influence my creative process, especially the creativity
     </footer>
 
     <script src="script.js"></script>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Large view">
+        <div class="lightbox-info">
+            <h2 id="lightbox-title"></h2>
+            <p id="lightbox-desc"></p>
+            <a id="lightbox-dl" href="" download class="download-btn">View Full Image</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
