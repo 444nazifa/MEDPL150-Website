@@ -394,10 +394,12 @@ h2 {
     margin-bottom: 50px;
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(215, 21, 92, 0.1);
+    position: static;
+    top: auto;
 }
 
 .article-header h1 {
-    font-size: 3rem;
+    font-size: 2.2rem;
     margin: 0 0 10px 0;
     color: #4a4a4a;
 }
