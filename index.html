@@ -25,7 +25,7 @@
             <p class="subtitle">Computer Science Student | Data Scientist | Digital Artist</p>
         </div>
         <div class="hero-image">
-            <img src="MEDLheadshot.jpeg", alt= "Nazifa Tabassum Portrait">
+            <img src="MEDLheadshot.jpeg" alt= "Nazifa Tabassum Portrait">
         </div>
     </section>
 
@@ -84,20 +84,57 @@ Fashion and digital art influence my creative process, especially the creativity
                     <div class="full-description" style="display:none;"> I found this photo interesting because I liked the overall scene and the way the different elements came together, especially the buildings and street. I focused on color and contrast to make the photo feel more dynamic. I edited the image to make the colors more vibrant and to increase contrast, which helped different elements in the scene stand out from each other. The stronger colors make the image feel more engaging, while the contrast helps guide the viewer’s attention through the photo. These adjustments helped the photo look less bland and made the composition more visually impactful.</div>
                 </div>
 
-                <div class="work-box">
-                    <div class="placeholder-border"></div>
-                    <p class="tbd-text">Project 03</p>
+                <div class="work-box" onclick="openLightbox(this)"
+                data-original="week3shallowdepthorg.jpg"
+                data-updated="week3shallowdepth.jpg">
+                <div class="image-container">
+                    <img src="week3shallowdepth.jpg" alt="Close-up texture study" class="featured-img">
+                    <div class="hover-overlay">
+                        <p class="short-desc"> My Dunkin coffee from class.
+                        <br>5456px x 3632px
+                        </p>
+                    </div>
                 </div>
+                <p class="tbd-text">Week 3: Shallow Depth Of Field</p>
+                <div class="full-description" style="display:none;">
+                    The original image shows a shallow depth of field taken with a Canon camera using an aperture of f/4.5, ISO 800, an exposure time of 1/500 second, and a focal length of 51mm. It was harder than I expected to achieve a strong shallow depth of field using the camera settings alone so it took alot of trial and error to get the settings correct. The original photo came out darker than I intended, so I adjusted the exposure in the Camera Raw filter to brighten it and bring out more detail. I also increased the clarity, reduced noise, and clipped around the coffee cup to help it stand out more clearly from the background. To emphasize the shallow depth of field effect, I applied a lens blur to the background so the focus would be on the Dunkin cup. Even though the a Dunkin cup is pretty simple, this project helped me better understand how camera settings and editing can be used to create depth. I’m still getting comfortable using manual settings, but I hope to keep improving so I can apply these techniques to more interesting subjects in the future.
 
-                <div class="work-box">
-                    <div class="placeholder-border"></div>
-                    <p class="tbd-text">Project 04</p>
                 </div>
+            </div>
 
-                <div class="work-box">
-                    <div class="placeholder-border"></div>
-                    <p class="tbd-text">Project 05</p>
+            <div class="work-box" onclick="openLightbox(this)"
+                data-original="week3deepdepthorg.jpg"
+                data-updated="week3deepdepth.jpg">
+                <div class="image-container">
+                    <img src="week3deepdepth.jpg" alt="Lighting and shadow composition" class="featured-img">
+                    <div class="hover-overlay">
+                        <p class="short-desc">Grace Farms, Connecticut.
+                        <br>4288px x 3216px
+                        </p>
+                    </div>
                 </div>
+                <p class="tbd-text">Week 3: Deep Depth Of Field</p>
+                <div class="full-description" style="display:none;">
+                    These photos demonstrate a deep depth of field because everything in the frame is clearly visible, including the grass, building, trees, and sky. I took the image using a Kodak EasyShare camera. The original photo was slightly underexposed and not framed as well as it could have been, so I adjusted the exposure and highlights in the Camera Raw filter to brighten the image and bring out more detail. I also used the auto-crop feature to improve the overall composition and center the photo better. I really enjoyed editing this photo because I was able to notice small details that I hadn’t fully appreciated when I first took it.The photo looks alot clearer and easier to focus on. This is my favorite piece I’ve created for this class so far because of its serene and calm atmosphere, which I think comes through more after the editing.
+                </div>
+            </div>
+
+            <div class="work-box" onclick="openLightbox(this)"
+                data-original="week3blurorg.jpg"
+                data-updated="week3blur.jpg">
+                <div class="image-container">
+                    <img src="week3blur.jpg" alt="Architectural perspective study" class="featured-img">
+                    <div class="hover-overlay">
+                        <p class="short-desc">Puppy from a pet shop near Hunter College.
+                        <br>4288px x 3216px
+                        </p>
+                    </div>
+                </div>
+                <p class="tbd-text">Week 3: Photoshop Blur</p>
+                <div class="full-description" style="display:none;">
+                I created a shallow depth of field effect for this image using Photoshop. The photo was originally taken with a Kodak EasyShare camera, and at first it looked pretty flat because both the subject and the background were equally clear. I clipped the puppy and added a layer mask, then applied a lens blur to the background to create more separation and emulate a shallow depth of field. Even after blurring the background, the puppy still blended in, so I increased the contrast, added texture, and increased the clarity to make the subject stand out more. Clipping the dog was challenging because of the fur, which made it difficult to get a perfectly clean selection. The puppy looks slightly like a sticker against the background. However, this project helped me understand how clipping and selections work in Photoshop, and I hope to improve my clipping skills going forward. 
+                </div>
+            </div>
 
                 <div class="work-box">
                     <div class="placeholder-border"></div>
@@ -211,18 +248,55 @@ Fashion and digital art influence my creative process, especially the creativity
             </div>
         </div>
     </footer>
+<!--- week 3 ---> 
+    <div id="lightboxCompare" class="lightbox" onclick="closeLightboxCompare()">
+  <div class="lightbox-content lightbox-compare" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeLightboxCompare()">&times;</span>
 
-    <script src="script.js"></script>
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        <img id="lightbox-img" src="" alt="Large view">
-        <div class="lightbox-info">
-            <h2 id="lightbox-title"></h2>
-            <p id="lightbox-desc"></p>
-            <a id="lightbox-dl" href="" download class="download-btn">View Full Image</a>
-        </div>
+    <h2 id="lightbox-title" class="compare-title"></h2>
+
+    <div class="compare-wrap">
+      <div class="compare-col">
+        <h3 class="compare-label">Original</h3>
+        <img id="lightbox-original" src="" alt="Original image" class="compare-img">
+      </div>
+
+      <div class="compare-col">
+        <h3 class="compare-label">Edited</h3>
+        <img id="lightbox-updated" src="" alt="Updated image" class="compare-img">
+      </div>
     </div>
+
+     <div class="compare-bottom">
+      <p id="lightbox-desc" class="compare-desc"></p>
+
+      <div class="compare-buttons">
+        <a id="btn-original" href="#" target="_blank" class="download-btn">
+          View Full Original Image
+        </a>
+        <a id="btn-updated" href="#" target="_blank" class="download-btn">
+          View Full Edited Image
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- WEEK 2: Single Image Lightbox -->
+<div id="lightboxSingle" class="lightbox" onclick="closeLightboxSingle()">
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeLightboxSingle()">&times;</span>
+
+    <img id="lightbox-img" src="" alt="Large view">
+
+    <div class="lightbox-info">
+      <h2 id="lightbox-title-single"></h2>
+      <p id="lightbox-desc-single"></p>
+      <a id="lightbox-dl" href="#" target="_blank" class="download-btn">
+        View Full Image
+      </a>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

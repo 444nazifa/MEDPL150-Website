@@ -15,35 +15,52 @@ document.querySelectorAll('nav a').forEach(anchor => {
 // --- NEW LIGHTBOX LOGIC FOR ART PORTFOLIO ---
 
 function openLightbox(element) {
-    // 1. Extract data from the clicked work-box
-    const imgUrl = element.querySelector('.featured-img').src;
-    const title = element.querySelector('.tbd-text').innerText;
-    const desc = element.querySelector('.full-description').innerText;
-    
-    // 2. Populate the Lightbox elements
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxDesc = document.getElementById('lightbox-desc');
-    const lightboxDl = document.getElementById('lightbox-dl');
-    
-    lightboxImg.src = imgUrl;
-    lightboxTitle.innerText = title;
-    lightboxDesc.innerText = desc;
-    lightboxDl.href = imgUrl;
-    
-    // 3. Display the lightbox and disable background scrolling
-    document.getElementById('lightbox').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; 
+  const title = element.querySelector('.tbd-text')?.innerText || "";
+  const desc = element.querySelector('.full-description')?.innerText || "";
+  const imgUrl = element.querySelector('.featured-img')?.src || "";
+
+  const originalSrc = element.getAttribute("data-original");
+  const updatedSrc = element.getAttribute("data-updated");
+
+  // WEEK 3 → Compare mode
+  if (originalSrc && updatedSrc) {
+    document.getElementById("lightbox-original").src = originalSrc;
+    document.getElementById("lightbox-updated").src = updatedSrc;
+
+    document.getElementById("lightbox-title").innerText = title;
+    document.getElementById("lightbox-desc").innerText = desc;
+
+    document.getElementById("btn-original").href = originalSrc;
+    document.getElementById("btn-updated").href = updatedSrc;
+
+    document.getElementById("lightboxCompare").style.display = "flex";
+    document.body.style.overflow = "hidden";
+    return;
+  }
+
+  // WEEK 2 → Single image mode
+  document.getElementById("lightbox-img").src = imgUrl;
+  document.getElementById("lightbox-title-single").innerText = title;
+  document.getElementById("lightbox-desc-single").innerText = desc;
+  document.getElementById("lightbox-dl").href = imgUrl;
+
+  document.getElementById("lightboxSingle").style.display = "flex";
+  document.body.style.overflow = "hidden";
 }
 
-function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
+function closeLightboxSingle() {
+  document.getElementById("lightboxSingle").style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
+function closeLightboxCompare() {
+  document.getElementById("lightboxCompare").style.display = "none";
+  document.body.style.overflow = "auto";
+}
 // 4. Close Lightbox with 'Esc' key for better UX
 document.addEventListener('keydown', (e) => {
     if (e.key === "Escape") {
-        closeLightbox();
+        closeLightboxSingle();
+        closeLightboxCompare();
     }
 });
