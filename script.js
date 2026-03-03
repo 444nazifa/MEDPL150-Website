@@ -32,6 +32,15 @@ function openLightbox(element) {
 
     document.getElementById("btn-original").href = originalSrc;
     document.getElementById("btn-updated").href = updatedSrc;
+    const label1 = element.getAttribute("data-label1") || "Original";
+    const label2 = element.getAttribute("data-label2") || "Edited";
+    document.querySelectorAll(".compare-label")[0].innerText = label1;
+    document.querySelectorAll(".compare-label")[1].innerText = label2;
+
+    const btn1Text = element.getAttribute("data-btn1") || "View Full Original Image";
+    const btn2Text = element.getAttribute("data-btn2") || "View Full Edited Image";
+    document.getElementById("btn-original").innerText = btn1Text;
+    document.getElementById("btn-updated").innerText = btn2Text;
 
     document.getElementById("lightboxCompare").style.display = "flex";
     document.body.style.overflow = "hidden";
