@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quiet City</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .city-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* City skyline silhouette */
+    .skyline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 55vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .sky-building {
+      flex-shrink: 0;
+      background: rgba(5, 10, 20, 0.95);
+      border-top: 1px solid rgba(79,195,247,0.08);
+      position: relative;
+    }
+
+    .sky-building::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 10px,
+        rgba(79,195,247,0.015) 10px,
+        rgba(79,195,247,0.015) 11px
+      );
+    }
+
+    /* Street light cone */
+    .street-light {
+      position: absolute;
+      bottom: 20vh;
+      width: 2px;
+      background: rgba(245,158,11,0.6);
+      box-shadow: 0 0 8px rgba(245,158,11,0.4);
+    }
+
+    .light-cone {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-top: 50px solid rgba(245,158,11,0.04);
+    }
+
+    /* Fog layer */
+    .fog-layer {
+      position: absolute;
+      bottom: 25vh;
+      left: -10%;
+      right: -10%;
+      height: 20vh;
+      background: linear-gradient(
+        to top,
+        rgba(79,195,247,0.04) 0%,
+        transparent 100%
+      );
+      filter: blur(20px);
+      animation: fogDrift 12s ease-in-out infinite;
+    }
+
+    @keyframes fogDrift {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(3%); }
+    }
+
+    /* Traffic light */
+    .traffic-light {
+      position: absolute;
+      right: 20%;
+      bottom: 28vh;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 6px;
+      background: rgba(5,8,16,0.9);
+      border: 1px solid rgba(255,255,255,0.05);
+      width: 20px;
+    }
+
+    .tl-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: auto;
+    }
+
+    .tl-red { background: #ff3344; box-shadow: 0 0 8px #ff3344; animation: tlBlink 8s infinite; }
+    .tl-yellow { background: rgba(255,200,0,0.2); }
+    .tl-green { background: rgba(0,255,100,0.2); }
+
+    @keyframes tlBlink {
+      0%, 45%, 55%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Street / ground */
+    .ground {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 20vh;
+      background: linear-gradient(to bottom, rgba(5,8,16,0.8), #030608);
+      border-top: 1px solid rgba(79,195,247,0.06);
+    }
+
+    /* Road reflection */
+    .road-reflection {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 15vh;
+      background: linear-gradient(to bottom, rgba(79,195,247,0.04), transparent);
+    }
+
+    /* Figure silhouette */
+    .figure {
+      position: absolute;
+      bottom: 20vh;
+      left: 30%;
+      width: 12px;
+      height: 35px;
+      background: rgba(5,10,20,0.9);
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      animation: figureWalk 15s ease-in-out infinite;
+    }
+
+    @keyframes figureWalk {
+      0%, 100% { left: 30%; }
+      40% { left: 32%; }
+      60% { left: 29%; }
+    }
+
+    /* Rain should be heavier here */
+    .city-content {
+      position: relative;
+      z-index: 10;
+      padding: clamp(3rem, 7vw, 6rem);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .location-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--neon-blue);
+      opacity: 0.5;
+      margin-bottom: 2rem;
+      animation: fadeUp 1.2s ease 0.2s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .city-title {
+      animation: fadeUp 1.2s ease 0.4s both;
+      margin-bottom: 1.5rem;
+    }
+
+    .city-desc {
+      animation: fadeUp 1.2s ease 0.7s both;
+      margin-bottom: 3rem;
+    }
+
+    .city-choices {
+      animation: fadeUp 1.2s ease 1s both;
+    }
+  </style>
+</head>
+<body style="--scene-image: url('assets/foggy_street_at_night_with_reflections.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="bg-quiet"></div>
+
+<div class="rain-container"></div>
+
+<!-- City scene -->
+<div class="city-scene">
+  <!-- Skyline buildings -->
+  <div class="skyline">
+    <div class="sky-building" style="width:60px;height:200px;"></div>
+    <div class="sky-building" style="width:40px;height:140px;"></div>
+    <div class="sky-building" style="width:80px;height:260px;"></div>
+    <div class="sky-building" style="width:30px;height:120px;"></div>
+    <div class="sky-building" style="width:55px;height:180px;"></div>
+    <div class="sky-building" style="width:45px;height:220px;"></div>
+    <div class="sky-building" style="width:70px;height:170px;"></div>
+    <div class="sky-building" style="width:35px;height:150px;"></div>
+    <div class="sky-building" style="width:90px;height:290px;"></div>
+    <div class="sky-building" style="width:40px;height:160px;"></div>
+    <div class="sky-building" style="width:50px;height:200px;"></div>
+    <div class="sky-building" style="width:65px;height:240px;"></div>
+    <div class="sky-building" style="width:30px;height:130px;"></div>
+    <div class="sky-building" style="width:75px;height:210px;"></div>
+    <div class="sky-building" style="width:45px;height:175px;"></div>
+    <div class="sky-building" style="width:55px;height:195px;"></div>
+    <div class="sky-building" style="width:40px;height:145px;"></div>
+    <div class="sky-building" style="width:80px;height:275px;"></div>
+  </div>
+
+  <!-- Fog -->
+  <div class="fog-layer"></div>
+  <div class="fog-layer" style="bottom:30vh;animation-delay:-6s;opacity:0.5;"></div>
+
+  <!-- Street lights -->
+  <div class="street-light" style="left:25%;height:80px;bottom:20vh;">
+    <div class="light-cone"></div>
+  </div>
+  <div class="street-light" style="left:55%;height:80px;bottom:20vh;">
+    <div class="light-cone"></div>
+  </div>
+
+  <!-- Traffic light -->
+  <div class="traffic-light">
+    <div class="tl-dot tl-red"></div>
+    <div class="tl-dot tl-yellow"></div>
+    <div class="tl-dot tl-green"></div>
+  </div>
+
+  <!-- Shadow figure -->
+  <div class="figure"></div>
+
+  <!-- Ground -->
+  <div class="ground">
+    <div class="road-reflection"></div>
+  </div>
+</div>
+
+<!-- Breadcrumb -->
+<a href="train.html" class="breadcrumb">
+        Return to the train
+      </a>
+
+<div class="page-wrapper">
+  <div class="city-content">
+    <p class="location-tag">Branch 01 · The Quiet City</p>
+
+    <h1 class="city-title">
+        Nobody looked at her. Nobody spoke.
+      </h1>
+
+    <div class="city-desc scene-text">
+      <p>The streets stretched in every direction, shining with rain under old amber streetlights.</p>
+      <p>A traffic signal changed from red to green for no one. Store windows glowed, but every room behind them was empty.</p>
+      <p>At first, the silence scared her.</p>
+      <p>Then, slowly, it started to feel safe.</p>
+      <p>Here, no one could ask what was wrong. No one could expect her to explain herself. No one could leave her, because no one had come close enough to stay.</p>
+      <p>Then she saw movement at the end of the street.</p>
+      <p>A figure stood in the fog, facing her.</p>
+      <p>For the first time in this city, someone noticed.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="quiet_figure.html">
+    <span class="choice-main">Follow the figure who looks like you</span>
+    <span class="choice-hint">This may show you what you become if you keep disappearing.</span>
+  </a>
+
+  <a class="decision-choice" href="quiet_cafe.html">
+    <span class="choice-main">Hide inside the warm café</span>
+    <span class="choice-hint">This may keep you safe, but safety can become a cage.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Return to the train</span>
+    <span class="choice-hint">You are not ready to face this place.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+

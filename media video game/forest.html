@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Forgotten Forest</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .forest-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, #0f2018 0%, #04100a 60%, #020608 100%);
+      z-index: 0;
+    }
+
+    /* Vines growing through scene */
+    .vine-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    /* Track rails */
+    .track-rails {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      width: 200px;
+      height: 60vh;
+      pointer-events: none;
+    }
+
+    .rail-left, .rail-right {
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to top, rgba(79,195,247,0.15), transparent);
+    }
+
+    .rail-left { left: 30%; transform-origin: bottom center; transform: perspective(400px) rotateX(30deg); }
+    .rail-right { right: 30%; transform-origin: bottom center; transform: perspective(400px) rotateX(30deg); }
+
+    /* Sleepers / cross ties */
+    .sleeper {
+      position: absolute;
+      left: 25%;
+      width: 50%;
+      height: 2px;
+      background: rgba(76,175,125,0.15);
+    }
+
+    /* Overgrown vines on rails */
+    .vine {
+      position: absolute;
+      z-index: 3;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid rgba(76,175,125,0.2);
+      pointer-events: none;
+    }
+
+    /* Leaves / particles */
+    .leaf {
+      position: fixed;
+      z-index: 2;
+      width: 6px;
+      height: 10px;
+      background: rgba(76,175,125,0.15);
+      border-radius: 50% 0 50% 0;
+      animation: leafFall var(--dur, 8s) linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes leafFall {
+      0% { transform: translateY(-5vh) rotate(0deg) translateX(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(105vh) rotate(360deg) translateX(var(--drift, 30px)); opacity: 0; }
+    }
+
+    /* Old station sign */
+    .station-sign {
+      position: fixed;
+      top: 15%;
+      right: 8%;
+      z-index: 3;
+      pointer-events: none;
+      padding: 0.8em 1.5em;
+      border: 1px solid rgba(76,175,125,0.2);
+      background: rgba(4,16,10,0.8);
+      transform: rotate(-2deg);
+    }
+
+    .station-sign p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: rgba(76,175,125,0.5);
+      text-transform: uppercase;
+    }
+
+    /* Mist / fog near ground */
+    .forest-mist {
+      position: fixed;
+      bottom: 0;
+      left: -20%;
+      right: -20%;
+      height: 30vh;
+      background: linear-gradient(to top, rgba(10,30,18,0.6), transparent);
+      filter: blur(30px);
+      z-index: 1;
+      animation: mistSway 10s ease-in-out infinite;
+    }
+
+    @keyframes mistSway {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(3%); }
+    }
+
+    /* Childhood objects scattered */
+    .memory-object {
+      position: fixed;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.12;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: rgba(76,175,125,0.6);
+      text-transform: uppercase;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 750px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .a1 { animation: fadeUp 1s ease 0.3s both; }
+    .a2 { animation: fadeUp 1s ease 0.6s both; }
+    .a3 { animation: fadeUp 1s ease 0.9s both; }
+    .a4 { animation: fadeUp 1s ease 1.2s both; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/abandoned_station_in_a_misty_forest.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="forest-bg"></div>
+
+<!-- Falling leaves -->
+<div id="leaves"></div>
+
+<!-- Forest mist -->
+<div class="forest-mist"></div>
+
+<!-- Station sign -->
+<div class="station-sign">
+  <p>Station ██</p>
+  <p style="opacity:0.4;margin-top:4px;">Forgotten</p>
+</div>
+
+<!-- Memory object whispers -->
+<div class="memory-object" style="bottom:35%;left:8%;">old swing set</div>
+<div class="memory-object" style="top:40%;right:10%;">red bicycle</div>
+<div class="memory-object" style="bottom:55%;right:20%;">your old house</div>
+
+<!-- Track rails -->
+<div class="track-rails">
+  <div class="rail-left" style="height:100%;"></div>
+  <div class="rail-right" style="height:100%;"></div>
+  <div class="sleeper" style="bottom:10%;"></div>
+  <div class="sleeper" style="bottom:25%;"></div>
+  <div class="sleeper" style="bottom:40%;"></div>
+  <div class="sleeper" style="bottom:55%;"></div>
+  <div class="sleeper" style="bottom:70%;"></div>
+  <div class="sleeper" style="bottom:85%;"></div>
+</div>
+
+<a href="train.html" class="breadcrumb">
+        Return to the train
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono a1" style="margin-bottom:1.5rem;color:#4caf7d;opacity:0.6;">Branch 03 · The Forgotten Forest</p>
+
+    <h1 class="a2" style="color:var(--text-primary);margin-bottom:1.5rem;">
+        The station smelled like rain and old memories.
+      </h1>
+
+    <div class="scene-text a3" style="margin-bottom:2.5rem;">
+      <p>The station had been swallowed by trees.</p>
+      <p>Vines wrapped around the turnstiles. Ferns pushed through the cracks in the platform. Moss covered the benches, but the station sign still hung above the tracks.</p>
+      <p>She knew this place.</p>
+      <p>Not from a dream.</p>
+      <p>Not from a nightmare.</p>
+      <p>From before.</p>
+      <p>Somewhere deeper in the station, a child laughed.</p>
+      <p>On one of the benches sat an old backpack, soaked with rain but untouched by time.</p>
+      <p>Her hands went cold.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="forest_backpack.html">
+    <span class="choice-main">Search the old backpack</span>
+    <span class="choice-hint">You may find what you tried to forget.</span>
+  </a>
+
+  <a class="decision-choice" href="forest_child.html">
+    <span class="choice-main">Follow the child’s voice</span>
+    <span class="choice-hint">You may meet the part of yourself you abandoned.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Leave before you remember</span>
+    <span class="choice-hint">You avoid the memory and return to the train.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+  // Generate falling leaves
+  const leavesContainer = document.getElementById('leaves');
+  for (let i = 0; i < 20; i++) {
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: 0;
+      --dur: ${6 + Math.random() * 8}s;
+      --drift: ${(Math.random()-0.5) * 80}px;
+      animation-delay: -${Math.random() * 8}s;
+      transform: rotate(${Math.random() * 360}deg);
+    `;
+    leavesContainer.appendChild(leaf);
+  }
+</script>
+</body>
+</html>
+

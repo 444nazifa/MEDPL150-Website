@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ending Two</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ending-bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 60% 35%, rgba(156,107,255,0.22), transparent 36%), linear-gradient(145deg, #14082a, #050210 72%); }
+    .ending-page { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 8vw, 7rem); max-width: 820px; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/loved.png'); --scene-position: center center;">
+<div class="cursor"></div><div class="cursor-ring"></div>
+
+<div class="scene-image-bg"></div>
+<div class="ending-bg"></div>
+<a href="train.html" class="breadcrumb">
+        Wake on the train
+      </a>
+<main class="ending-page">
+  <p class="mono" style="margin-bottom:1.5rem;color:var(--neon-purple);opacity:0.7;">Ending 02 · Perfect Enough</p>
+  <h2 style="margin-bottom:1.5rem;">She chose the dream with open eyes.</h2>
+  <div class="scene-text" style="margin-bottom:2.5rem;">
+      <p>The perfect city welcomed her back like nothing had happened.</p>
+      <p>The lights glowed. The music played. The people smiled and called her name with voices full of warmth.</p>
+      <p>She saw the cracks now.</p>
+      <p>She saw the same faces repeating in different windows. She saw the same street turn back into itself. She saw the same laugh begin before the joke was told.</p>
+      <p>It was not real.</p>
+      <p>But it was kind.</p>
+      <p>It gave her the life she wanted without asking what it had cost.</p>
+      <p>So she stopped searching for the mistake.</p>
+      <p>She smiled when the others smiled. She raised her glass when they raised theirs. She let the city remember a version of her that had never been hurt.</p>
+      <p>The loop closed gently around her.</p>
+      <p>This time, she did not fight it.</p>
+    </div>
+  <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Wake on the train</span>
+    <span class="choice-hint">The train gives you another chance to choose.</span>
+  </a>
+
+  <a class="decision-choice" href="index.html">
+    <span class="choice-main">Start over</span>
+    <span class="choice-hint">Return to the beginning.</span>
+  </a>
+</div>
+</main>
+<script src="main.js"></script>
+</body>
+</html>
+

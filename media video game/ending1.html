@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ending One</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ending-bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 55% 42%, rgba(245,158,11,0.18), transparent 32%), linear-gradient(160deg, #1a0e05, #050306 70%); }
+    .ending-page { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 8vw, 7rem); max-width: 820px; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/stay.png'); --scene-position: center center;">
+<div class="cursor"></div><div class="cursor-ring"></div>
+
+<div class="scene-image-bg"></div>
+<div class="ending-bg"></div>
+<a href="train.html" class="breadcrumb">
+        Wake on the train
+      </a>
+<main class="ending-page">
+  <p class="mono" style="margin-bottom:1.5rem;color:var(--amber);opacity:0.7;">Ending 01 · The Warm Room</p>
+  <h2 style="margin-bottom:1.5rem;">She stayed until the rain forgot her name.</h2>
+  <div class="scene-text" style="margin-bottom:2.5rem;">
+      <p>The café light never went out.</p>
+      <p>The rain stayed soft against the windows. The cup stayed warm between her hands. No one asked where she had been. No one asked what she remembered. No one asked her to be brave.</p>
+      <p>For a while, that felt like peace.</p>
+      <p>The waitress moved quietly behind the counter. The music played the same gentle song every night. Outside, the city blurred into amber light and fog.</p>
+      <p>She knew the train was still out there.</p>
+      <p>Sometimes she heard it beneath the floor, passing through the dark with its doors open.</p>
+      <p>But she did not stand.</p>
+      <p>Not yet.</p>
+      <p>Maybe comfort was not freedom.</p>
+      <p>Maybe it was only another kind of room.</p>
+      <p>Still, she closed her eyes and let herself rest.</p>
+    </div>
+  <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Wake on the train</span>
+    <span class="choice-hint">The train gives you another chance to choose.</span>
+  </a>
+
+  <a class="decision-choice" href="index.html">
+    <span class="choice-main">Start over</span>
+    <span class="choice-hint">Return to the beginning.</span>
+  </a>
+</div>
+</main>
+<script src="main.js"></script>
+</body>
+</html>
+

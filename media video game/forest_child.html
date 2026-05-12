@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Child</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .child-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, #121a0e 0%, #04090a 70%);
+      z-index: 0;
+    }
+
+    /* Soft dawn glow (slightly warmer) */
+    .dawn-glow {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 40vh;
+      background: radial-gradient(ellipse at 50% 0%, rgba(76,175,125,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Child silhouette */
+    .child-figure {
+      position: fixed;
+      bottom: 22%;
+      right: 25%;
+      z-index: 3;
+      pointer-events: none;
+      text-align: center;
+      animation: childBreath 4s ease-in-out infinite;
+    }
+
+    @keyframes childBreath {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.98); }
+    }
+
+    .child-head {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(76,175,125,0.15);
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(76,175,125,0.1);
+    }
+
+    .child-body {
+      width: 14px;
+      height: 30px;
+      background: rgba(76,175,125,0.12);
+      margin: 2px auto 0;
+      border-radius: 3px 3px 0 0;
+    }
+
+    /* Aura / glow around child */
+    .child-aura {
+      position: fixed;
+      bottom: 20%;
+      right: 22%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(76,175,125,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 2;
+      animation: auraBreath 4s ease-in-out infinite;
+    }
+
+    @keyframes auraBreath {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+
+    /* You (the player) silhouette looking at child */
+    .player-figure {
+      position: fixed;
+      bottom: 22%;
+      left: 30%;
+      z-index: 3;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .player-head {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(79,195,247,0.12);
+      margin: 0 auto;
+    }
+
+    .player-body {
+      width: 18px;
+      height: 40px;
+      background: rgba(79,195,247,0.10);
+      margin: 2px auto 0;
+      border-radius: 3px 3px 0 0;
+    }
+
+    /* Connection line between them */
+    .connection-line {
+      position: fixed;
+      bottom: 30%;
+      left: 33%;
+      width: 40%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(79,195,247,0.1), rgba(76,175,125,0.1));
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 700px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .a1 { animation: fadeUp 1s ease 0.3s both; }
+    .a2 { animation: fadeUp 1s ease 0.6s both; }
+    .a3 { animation: fadeUp 1s ease 0.9s both; }
+    .a4 { animation: fadeUp 1s ease 1.2s both; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/forest_child_branch.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="child-bg"></div>
+<div class="dawn-glow"></div>
+<div class="rain-container"></div>
+
+<!-- Figures -->
+<div class="child-aura"></div>
+<div class="child-figure">
+  <div class="child-head"></div>
+  <div class="child-body"></div>
+</div>
+<div class="connection-line"></div>
+<div class="player-figure">
+  <div class="player-head"></div>
+  <div class="player-body"></div>
+</div>
+
+<a href="forest.html" class="breadcrumb">
+        The Forgotten Forest
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono a1" style="margin-bottom:1.5rem;color:#4caf7d;opacity:0.6;">The Forest · A Younger Self</p>
+
+    <h2 class="a2" style="margin-bottom:1.5rem;color:var(--text-primary);">
+        The girl on the platform was her.
+      </h2>
+
+    <div class="scene-text a3" style="margin-bottom:2.5rem;">
+      <p>The child sat at the edge of the platform with her feet hanging over the tracks.</p>
+      <p>She was small. Maybe seven or eight. Her coat was too thin for the rain, and her shoes were covered in mud.</p>
+      <p>She did not look like a ghost.</p>
+      <p>She looked tired.</p>
+      <p>Like she had been waiting for someone who kept choosing not to come back.</p>
+      <p>The woman stepped closer.</p>
+      <p>The child did not turn around, but she spoke.</p>
+      <p>“You forgot me.”</p>
+      <p>For a moment, the forest stopped breathing.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="ending3.html">
+    <span class="choice-main">Tell her, “I remember now.”</span>
+    <span class="choice-hint">You accept the memory.</span>
+  </a>
+
+  <a class="decision-choice" href="ending3.html">
+    <span class="choice-main">Sit beside her and say, “I’m sorry.”</span>
+    <span class="choice-hint">You stop abandoning her.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Turn away before she looks at you</span>
+    <span class="choice-hint">You leave the memory behind again.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+

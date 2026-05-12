@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Figure</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .alley-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.7) 100%),
+        radial-gradient(ellipse at 50% 70%, #0a1828 0%, #020508 70%);
+      z-index: 0;
+    }
+
+    /* Alley walls */
+    .alley-wall {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 30%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .alley-wall-left {
+      left: 0;
+      background: linear-gradient(to right, #04080f, rgba(4,8,15,0.3));
+      border-right: 1px solid rgba(79,195,247,0.05);
+    }
+
+    .alley-wall-right {
+      right: 0;
+      background: linear-gradient(to left, #04080f, rgba(4,8,15,0.3));
+      border-left: 1px solid rgba(79,195,247,0.05);
+    }
+
+    /* Figure silhouette at end of alley */
+    .alley-figure {
+      position: fixed;
+      bottom: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      pointer-events: none;
+      animation: figureRecede 3s ease-in-out infinite;
+      filter: blur(1px);
+    }
+
+    @keyframes figureRecede {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.15; }
+      50% { transform: translateX(-50%) scale(0.95); opacity: 0.1; }
+    }
+
+    .fig-body {
+      width: 18px;
+      height: 50px;
+      background: rgba(5,10,20,0.95);
+      margin: 0 auto;
+      border-top-left-radius: 9px;
+      border-top-right-radius: 9px;
+    }
+
+    .fig-head {
+      width: 14px;
+      height: 14px;
+      background: rgba(5,10,20,0.9);
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    /* Footstep sound text */
+    .footsteps {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.5em;
+      color: var(--text-ghost);
+      text-transform: uppercase;
+      animation: footstepBeat 2s ease-in-out infinite;
+    }
+
+    @keyframes footstepBeat {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 750px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .p1 { animation: fadeUp 1s ease 0.3s both; }
+    .p2 { animation: fadeUp 1s ease 0.6s both; }
+    .p3 { animation: fadeUp 1s ease 0.9s both; }
+    .p4 { animation: fadeUp 1s ease 1.2s both; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/figure.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="alley-bg"></div>
+
+<div class="rain-container"></div>
+
+<!-- Alley environment -->
+<div class="alley-wall alley-wall-left"></div>
+<div class="alley-wall alley-wall-right"></div>
+
+<div class="alley-figure">
+  <div class="fig-head"></div>
+  <div class="fig-body"></div>
+</div>
+
+<a href="quietcity.html" class="breadcrumb">
+        The Quiet City
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono p1" style="margin-bottom:1.5rem;">The Alley · No Exit</p>
+
+    <h2 class="p2" style="margin-bottom:1.5rem;">
+        The figure disappeared into the alley.
+      </h2>
+
+    <div class="scene-text p3" style="margin-bottom:1rem;">
+      <p>She followed before she could think.</p>
+      <p>The alley narrowed with every step. Brick walls leaned inward. Fire escapes crossed above her like ribs. The figure stayed ahead, always the same distance away.</p>
+      <p>Not running.</p>
+      <p>Not waiting.</p>
+      <p>Just leading.</p>
+      <p>When it passed beneath a broken streetlamp, she finally saw enough to understand.</p>
+      <p>The figure had her coat.</p>
+      <p>Her walk.</p>
+      <p>Her shape.</p>
+      <p>It was not a stranger. It was what she would become if she stayed invisible long enough.</p>
+      <p>The figure turned the corner and vanished.</p>
+      <p>The alley went silent.</p>
+      <p>At the end of the alley, a train door opened by itself.</p>
+    </div>
+
+    <p class="footsteps p3" style="margin:1.5rem 0;">· · · · ·</p>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="ending4.html">
+    <span class="choice-main">Follow the shadow to the front of the train</span>
+    <span class="choice-hint">You stop running from what you became.</span>
+  </a>
+
+  <a class="decision-choice" href="quietcity.html">
+    <span class="choice-main">Turn back before you vanish too</span>
+    <span class="choice-hint">You are not ready to face this version of yourself.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Return to the train</span>
+    <span class="choice-hint">You leave the shadow unanswered.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+

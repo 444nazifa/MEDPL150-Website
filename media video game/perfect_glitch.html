@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Glitch</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .glitch-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, #0f0825 0%, #050210 100%);
+      z-index: 0;
+    }
+
+    /* Duplicated environment overlay */
+    .duplicate-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.15;
+      transform: translateX(8px);
+      filter: hue-rotate(180deg);
+      animation: duplicateShift 3s ease-in-out infinite;
+    }
+
+    @keyframes duplicateShift {
+      0%, 100% { transform: translateX(8px); opacity: 0.12; }
+      33% { transform: translateX(-6px) translateY(3px); opacity: 0.2; }
+      66% { transform: translateX(12px) translateY(-2px); opacity: 0.08; }
+    }
+
+    /* Screen tear effect */
+    .screen-tear {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-teal), transparent);
+      z-index: 5;
+      opacity: 0;
+      animation: tearSlide 4s ease-in-out infinite;
+    }
+
+    @keyframes tearSlide {
+      0% { top: -5%; opacity: 0; }
+      10% { opacity: 0.6; }
+      50% { top: 105%; opacity: 0.3; }
+      51%, 100% { opacity: 0; top: -5%; }
+    }
+
+    /* Repeating text columns (NPC loop dialogue) */
+    .npc-text {
+      position: fixed;
+      z-index: 3;
+      pointer-events: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      line-height: 2.5;
+      color: rgba(156,107,255,0.15);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      overflow: hidden;
+      height: 100vh;
+      animation: npcScroll var(--speed, 15s) linear infinite;
+    }
+
+    @keyframes npcScroll {
+      from { transform: translateY(0); }
+      to { transform: translateY(-50%); }
+    }
+
+    /* Error overlay */
+    .error-box {
+      position: fixed;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+      z-index: 6;
+      padding: 1em 1.5em;
+      border: 1px solid rgba(0,229,204,0.3);
+      background: rgba(3,2,10,0.9);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--neon-teal);
+      letter-spacing: 0.1em;
+      line-height: 1.8;
+      animation: errorFlicker 6s infinite;
+    }
+
+    @keyframes errorFlicker {
+      0%, 94%, 96%, 98%, 100% { opacity: 1; }
+      95%, 97% { opacity: 0; }
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 700px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .a1 { animation: fadeUp 1s ease 0.3s both; }
+    .a2 { animation: fadeUp 1s ease 0.6s both; }
+    .a3 { animation: fadeUp 1s ease 0.9s both; }
+    .a4 { animation: fadeUp 1s ease 1.2s both; }
+
+    /* Corrupted heading */
+    .corrupted-text {
+      position: relative;
+      color: var(--text-primary);
+    }
+
+    .corrupted-text::after {
+      content: attr(data-corrupt);
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #ff3366;
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+      animation: corruptShift 2s steps(1) infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes corruptShift {
+      0%, 100% { transform: translateX(0); opacity: 0; }
+      30% { transform: translateX(-4px); opacity: 0.6; }
+      60% { transform: translateX(4px); opacity: 0.4; }
+      90% { transform: translateX(-2px); opacity: 0.5; }
+    }
+  </style>
+</head>
+<body style="--scene-image: url('assets/repeatedfigures.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="glitch-bg"></div>
+
+<!-- NPC repeated dialogue columns -->
+<div class="npc-text" style="right:3%;--speed:12s;">don't you remember · don't you remember · don't you remember · don't you remember · don't you remember</div>
+<div class="npc-text" style="right:8%;--speed:18s;animation-delay:-6s;color:rgba(79,195,247,0.1);">we've always been here · we've always been here · we've always been here</div>
+<div class="npc-text" style="left:2%;--speed:10s;animation-delay:-3s;color:rgba(255,100,180,0.1);">this is real · this is real · this is real · this is real · this is real</div>
+
+<!-- Screen tear -->
+<div class="screen-tear"></div>
+<div class="screen-tear" style="animation-delay:-2s;background:linear-gradient(90deg,transparent,var(--neon-purple),transparent);"></div>
+
+<!-- Error box -->
+<div class="error-box">
+  REALITY.EXE<br>
+  loop detected<br>
+  iteration: ████<br>
+  <br>
+  [continue?]<br>
+  [exit?]
+</div>
+
+<a href="perfectlife.html" class="breadcrumb">
+        The Perfect Life
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono a1" style="margin-bottom:1.5rem;color:var(--neon-teal);opacity:0.6;">Reality Check · Loop Detected</p>
+
+    <h2 class="a2 corrupted-text" data-corrupt="Reality was repeating." style="margin-bottom:1.5rem;">
+        Reality was repeating.
+      </h2>
+
+    <div class="scene-text a3 reality-glitch" data-intensity="4" style="margin-bottom:2.5rem;">
+      <p>The same man crossed the street three times.</p>
+      <p>The same child rode past on the same bicycle, splashing through the same puddle. The same woman in the same window lifted the same cup to her mouth and never drank.</p>
+      <p>The city was not alive.</p>
+      <p>It was performing.</p>
+      <p>The traffic light changed from red to green, then red again, too fast. A laugh skipped like a broken record. Somewhere behind her, a voice whispered her name in the exact same tone as before.</p>
+      <p>She looked at the perfect buildings, the perfect lights, the perfect people.</p>
+      <p>This place was not happiness.</p>
+      <p>It was a loop wearing a pretty face.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="ending2.html">
+    <span class="choice-main">Ignore the loop and stay anyway</span>
+    <span class="choice-hint">You know it is fake, but you choose it.</span>
+  </a>
+
+  <a class="decision-choice" href="ending4.html">
+    <span class="choice-main">Break the loop and find who controls it</span>
+    <span class="choice-hint">You reject the illusion and take control.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Return to the train</span>
+    <span class="choice-hint">You leave before the loop learns you.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+

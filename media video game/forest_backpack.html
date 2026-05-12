@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Backpack</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 750px;
+    }
+
+    .forest-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 40% 60%, #0c1c12 0%, #03090a 70%);
+      z-index: 0;
+    }
+
+    /* Photo / letter items floating in */
+    .memory-items {
+      position: fixed;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      pointer-events: none;
+    }
+
+    .memory-item {
+      padding: 0.8em 1.2em;
+      border: 1px solid rgba(76,175,125,0.2);
+      background: rgba(4,12,8,0.8);
+      backdrop-filter: blur(8px);
+      max-width: 180px;
+      animation: itemFloat var(--dur, 5s) ease-in-out infinite;
+    }
+
+    @keyframes itemFloat {
+      0%, 100% { transform: translateY(0) rotate(var(--rot, -2deg)); }
+      50% { transform: translateY(-8px) rotate(calc(var(--rot, -2deg) * -0.5)); }
+    }
+
+    .memory-item p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: rgba(76,175,125,0.5);
+      text-transform: uppercase;
+      line-height: 1.8;
+    }
+
+    /* "Photo" placeholder */
+    .photo-placeholder {
+      width: 120px;
+      height: 80px;
+      border: 1px solid rgba(76,175,125,0.15);
+      background: rgba(76,175,125,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .a1 { animation: fadeUp 1s ease 0.3s both; }
+    .a2 { animation: fadeUp 1s ease 0.6s both; }
+    .a3 { animation: fadeUp 1s ease 0.9s both; }
+    .a4 { animation: fadeUp 1s ease 1.3s both; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/forest_backpack_branch.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="forest-bg"></div>
+<div class="rain-container"></div>
+
+<!-- Memory items floating -->
+<div class="memory-items">
+  <div class="memory-item" style="--dur:5s;--rot:-3deg;">
+    <div class="photo-placeholder">
+      <p style="text-align:center;opacity:0.4;">old photograph</p>
+    </div>
+    <p>age 7 · summer</p>
+  </div>
+  <div class="memory-item" style="--dur:7s;--rot:2deg;animation-delay:-2s;">
+    <p>dear me,<br>i hope you<br>remember this.<br>—you, age 9</p>
+  </div>
+  <div class="memory-item" style="--dur:6s;--rot:-1deg;animation-delay:-4s;">
+    <p>train ticket<br>platform 00<br>destination: home</p>
+  </div>
+</div>
+
+<a href="forest.html" class="breadcrumb">
+        The Forgotten Forest
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono a1" style="margin-bottom:1.5rem;color:#4caf7d;opacity:0.6;">The Forest · The Backpack</p>
+
+    <h2 class="a2" style="margin-bottom:1.5rem;color:var(--text-primary);">
+        Everything she had forgotten was inside.
+      </h2>
+
+    <div class="scene-text a3" style="margin-bottom:2.5rem;">
+      <p>The backpack opened too easily, like it had been waiting for her.</p>
+      <p>Inside was a faded photograph of a little girl standing on this same platform. The girl’s hair was tangled from rain. Her shoes were muddy. She was holding a train ticket in both hands.</p>
+      <p>There was a note folded beneath the photo.</p>
+      <p>The handwriting was careful and uneven.</p>
+      <p>Dear me,</p>
+      <p>If you find this, please do not leave me here again.</p>
+      <p>Her hands started to shake.</p>
+      <p>The girl in the photograph was her.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="forest_child.html">
+    <span class="choice-main">Take the photo and find the child</span>
+    <span class="choice-hint">You accept that this memory belongs to you.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Close the backpack</span>
+    <span class="choice-hint">You choose not to remember.</span>
+  </a>
+
+  <a class="decision-choice" href="forest.html">
+    <span class="choice-main">Return to the forest station</span>
+    <span class="choice-hint">You step back before deciding.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+

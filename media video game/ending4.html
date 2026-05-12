@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ending Four</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ending-bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 48% 48%, rgba(0,229,204,0.18), transparent 36%), linear-gradient(150deg, #041c1d, #03050a 72%); }
+    .ending-page { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem, 8vw, 7rem); max-width: 820px; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/front_of_train.png'); --scene-position: center center;">
+<div class="cursor"></div><div class="cursor-ring"></div>
+
+<div class="scene-image-bg"></div>
+<div class="ending-bg"></div>
+<a href="train.html" class="breadcrumb">
+        Choose another station
+      </a>
+<main class="ending-page">
+  <p class="mono" style="margin-bottom:1.5rem;color:var(--neon-teal);opacity:0.7;">Ending 04 · The Conductor</p>
+  <h2 style="margin-bottom:1.5rem;">At the front of the train, she found herself driving.</h2>
+  <div class="scene-text" style="margin-bottom:2.5rem;">
+      <p>The front car was waiting for her.</p>
+      <p>No matter which path she took, it had been leading here.</p>
+      <p>The alley with no exit. The city that repeated. The forest that remembered her. Every road had pointed toward the same door.</p>
+      <p>Inside the conductor’s cabin, the controls glowed in the dark.</p>
+      <p>The map showed every station on the line.</p>
+      <p>The Quiet City.</p>
+      <p>The Perfect Life.</p>
+      <p>The Forgotten Forest.</p>
+      <p>All of them were still there.</p>
+      <p>All of them were hers.</p>
+      <p>She had spent so long being carried from one fear to another that she forgot to ask who was driving.</p>
+      <p>Now she knew.</p>
+      <p>The train had never been lost.</p>
+      <p>It had been waiting for her to take the controls.</p>
+      <p>She placed her hand on the lever.</p>
+      <p>The track ahead disappeared into blackness, but this time, the dark did not choose for her.</p>
+      <p>She pushed forward.</p>
+    </div>
+  <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Choose another station</span>
+    <span class="choice-hint">This time, you decide where the train goes.</span>
+  </a>
+
+  <a class="decision-choice" href="index.html">
+    <span class="choice-main">Start over</span>
+    <span class="choice-hint">Return to the beginning.</span>
+  </a>
+</div>
+</main>
+<script src="main.js"></script>
+</body>
+</html>
+

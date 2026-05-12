@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Perfect Life</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .perfect-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 20%, #1a0a3a 0%, #0a0520 50%, #050210 100%);
+      z-index: 0;
+    }
+
+    /* Bright city lights (dots) */
+    .city-lights {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .city-light-dot {
+      position: absolute;
+      border-radius: 50%;
+      animation: lightPulse var(--dur, 3s) ease-in-out infinite;
+    }
+
+    @keyframes lightPulse {
+      0%, 100% { opacity: var(--base-opacity, 0.5); transform: scale(1); }
+      50% { opacity: calc(var(--base-opacity, 0.5) * 1.5); transform: scale(1.1); }
+    }
+
+    /* Neon signs */
+    .neon-sign {
+      position: fixed;
+      z-index: 2;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      pointer-events: none;
+    }
+
+    .ns-1 {
+      top: 15%;
+      right: 8%;
+      font-size: 1.8rem;
+      color: var(--neon-purple);
+      text-shadow: 0 0 20px var(--neon-purple), 0 0 40px rgba(156,107,255,0.4);
+      animation: neonFlicker 5s infinite;
+    }
+
+    .ns-2 {
+      top: 35%;
+      right: 5%;
+      font-size: 1.2rem;
+      color: rgba(255,100,180,0.7);
+      text-shadow: 0 0 15px rgba(255,100,180,0.5);
+      animation: neonFlicker 7s 2s infinite;
+    }
+
+    @keyframes neonFlicker {
+      0%, 95%, 97%, 100% { opacity: 1; }
+      96%, 98% { opacity: 0.3; }
+    }
+
+    /* Silhouette crowd on rooftop */
+    .rooftop-crowd {
+      position: fixed;
+      bottom: 20%;
+      right: 10%;
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .crowd-person {
+      background: rgba(10,5,30,0.9);
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      animation: crowdSway var(--sway-dur, 4s) ease-in-out infinite;
+    }
+
+    @keyframes crowdSway {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(var(--sway, 3px)); }
+    }
+
+    /* Confetti/sparkle particles */
+    .sparkle {
+      position: fixed;
+      z-index: 3;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      animation: sparkleFall var(--dur, 4s) ease-in infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sparkleFall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 750px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .a1 { animation: fadeUp 1s ease 0.3s both; }
+    .a2 { animation: fadeUp 1s ease 0.6s both; }
+    .a3 { animation: fadeUp 1s ease 0.9s both; }
+    .a4 { animation: fadeUp 1s ease 1.2s both; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/foggy_boulevard_under_warm_streetlights.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="perfect-bg"></div>
+
+<!-- City lights -->
+<div class="city-lights" id="city-lights"></div>
+
+<!-- Neon signs -->
+<div class="neon-sign ns-1">always</div>
+<div class="neon-sign ns-2">perfect</div>
+
+<!-- Rooftop crowd -->
+<div class="rooftop-crowd">
+  <div class="crowd-person" style="width:10px;height:36px;--sway:-2px;--sway-dur:3.5s;"></div>
+  <div class="crowd-person" style="width:12px;height:42px;--sway:3px;--sway-dur:4.2s;"></div>
+  <div class="crowd-person" style="width:9px;height:30px;--sway:-3px;--sway-dur:3.8s;"></div>
+  <div class="crowd-person" style="width:11px;height:38px;--sway:2px;--sway-dur:5s;"></div>
+  <div class="crowd-person" style="width:10px;height:40px;--sway:-1px;--sway-dur:4.5s;"></div>
+  <div class="crowd-person" style="width:13px;height:35px;--sway:4px;--sway-dur:3.2s;"></div>
+</div>
+
+<a href="train.html" class="breadcrumb">
+        Return to the train
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono a1" style="margin-bottom:1.5rem;color:var(--neon-purple);opacity:0.6;">Branch 02 · The Perfect Life</p>
+
+    <h1 class="a2 glitch" data-text="Everything felt exactly right." style="color:var(--text-primary);margin-bottom:0.5rem;">
+        Everything felt exactly right.
+      </h1>
+    <h1 class="a2" style="color:var(--neon-purple);font-size:clamp(1.5rem,4vw,3rem);margin-bottom:1.5rem;text-shadow:0 0 30px rgba(156,107,255,0.4);">
+        Too right.
+      </h1>
+
+    <div class="scene-text a3" style="margin-bottom:2.5rem;">
+      <p>The city was beautiful in a way that made her chest ache.</p>
+      <p>Every streetlight glowed at the perfect brightness. Every window showed a life she almost wanted. Every face turned toward her with an easy smile.</p>
+      <p>A couple laughed as she passed. A stranger waved like they had known her for years. Somewhere above the street, music drifted from a rooftop party.</p>
+      <p>This was the life she might have designed for herself if someone had asked what happiness should look like.</p>
+      <p>But no one had asked.</p>
+      <p>And still, the city had known.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="perfect_party.html">
+    <span class="choice-main">Join the party where everyone loves you</span>
+    <span class="choice-hint">You accept the life you always wanted.</span>
+  </a>
+
+  <a class="decision-choice" href="perfect_glitch.html">
+    <span class="choice-main">Look for what is wrong</span>
+    <span class="choice-hint">You question the illusion.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Return to the train</span>
+    <span class="choice-hint">You leave before the lie convinces you.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script>
+  // Generate city light dots
+  const lightsContainer = document.getElementById('city-lights');
+  const colors = ['rgba(156,107,255,', 'rgba(255,100,180,', 'rgba(79,195,247,', 'rgba(255,200,100,'];
+  for (let i = 0; i < 80; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('city-light-dot');
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const size = 1 + Math.random() * 3;
+    const opacity = 0.2 + Math.random() * 0.5;
+    dot.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color}${opacity});
+      box-shadow: 0 0 ${size * 4}px ${color}${opacity * 0.5});
+      --dur: ${2 + Math.random() * 4}s;
+      --base-opacity: ${opacity};
+      animation-delay: -${Math.random() * 4}s;
+    `;
+    lightsContainer.appendChild(dot);
+  }
+
+  // Generate sparkles
+  for (let i = 0; i < 20; i++) {
+    const sp = document.createElement('div');
+    sp.classList.add('sparkle');
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    sp.style.cssText = `
+      left: ${Math.random() * 100}%;
+      background: ${color}0.8);
+      box-shadow: 0 0 6px ${color}0.6);
+      --dur: ${3 + Math.random() * 5}s;
+      animation-delay: -${Math.random() * 5}s;
+    `;
+    document.body.appendChild(sp);
+  }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Party</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .party-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, #2a0a4a 0%, #0d0520 60%, #050210 100%);
+      z-index: 0;
+    }
+
+    /* Rooftop edge */
+    .rooftop-edge {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 15vh;
+      background: #04020c;
+      border-top: 1px solid rgba(156,107,255,0.15);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* City far below */
+    .city-far {
+      position: fixed;
+      bottom: 15vh;
+      left: 0;
+      right: 0;
+      height: 25vh;
+      display: flex;
+      align-items: flex-end;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .far-building {
+      flex-shrink: 0;
+      background: rgba(3,2,10,0.9);
+      border-top: 1px solid rgba(156,107,255,0.06);
+    }
+
+    /* Party crowd silhouettes */
+    .party-crowd {
+      position: fixed;
+      bottom: 15vh;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      pointer-events: none;
+      display: flex;
+      gap: 6px;
+      align-items: flex-end;
+      width: 80%;
+      justify-content: center;
+    }
+
+    .party-person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .p-head {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(10,5,25,0.95);
+    }
+
+    .p-body {
+      background: rgba(10,5,25,0.95);
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Subtle music visualization */
+    .music-bars {
+      position: fixed;
+      bottom: 15vh;
+      right: 5%;
+      z index: 3;
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 30px;
+      pointer-events: none;
+    }
+
+    .music-bar {
+      width: 3px;
+      background: rgba(156,107,255,0.4);
+      animation: barBounce var(--speed, 0.5s) ease-in-out infinite alternate;
+    }
+
+    @keyframes barBounce {
+      from { height: 4px; }
+      to { height: var(--max-h, 20px); }
+    }
+
+    /* "They already know her" glitch whispers */
+    .whispers {
+      position: fixed;
+      z-index: 4;
+      pointer-events: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: rgba(156,107,255,0.25);
+      text-transform: uppercase;
+      animation: whisperFade var(--dur, 6s) ease-in-out infinite;
+    }
+
+    @keyframes whisperFade {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 7vw, 6rem);
+      max-width: 750px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .a1 { animation: fadeUp 1s ease 0.3s both; }
+    .a2 { animation: fadeUp 1s ease 0.6s both; }
+    .a3 { animation: fadeUp 1s ease 0.9s both; }
+    .a4 { animation: fadeUp 1s ease 1.2s both; }
+  </style>
+</head>
+<body style="--scene-image: url('assets/party_scene.png'); --scene-position: center center;">
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<div class="scene-image-bg"></div>
+<div class="party-bg"></div>
+
+<!-- Whisper hints -->
+<div class="whispers" style="top:15%;left:5%;--dur:7s;">they know your name</div>
+<div class="whispers" style="top:50%;right:5%;--dur:9s;animation-delay:-3s;">always been here</div>
+<div class="whispers" style="top:75%;left:30%;--dur:6s;animation-delay:-5s;">don't you remember?</div>
+
+<!-- Rooftop edge -->
+<div class="rooftop-edge"></div>
+
+<!-- City far below -->
+<div class="city-far">
+  <div class="far-building" style="width:30px;height:60px;"></div>
+  <div class="far-building" style="width:20px;height:45px;"></div>
+  <div class="far-building" style="width:45px;height:80px;"></div>
+  <div class="far-building" style="width:25px;height:55px;"></div>
+  <div class="far-building" style="width:35px;height:70px;"></div>
+  <div class="far-building" style="width:50px;height:90px;"></div>
+  <div class="far-building" style="width:28px;height:50px;"></div>
+  <div class="far-building" style="width:40px;height:75px;"></div>
+</div>
+
+<!-- Party crowd -->
+<div class="party-crowd">
+  <div class="party-person"><div class="p-head"></div><div class="p-body" style="width:12px;height:35px;"></div></div>
+  <div class="party-person"><div class="p-head"></div><div class="p-body" style="width:10px;height:40px;"></div></div>
+  <div class="party-person"><div class="p-head"></div><div class="p-body" style="width:13px;height:32px;"></div></div>
+  <div class="party-person"><div class="p-head"></div><div class="p-body" style="width:11px;height:38px;"></div></div>
+  <div class="party-person"><div class="p-head"></div><div class="p-body" style="width:12px;height:36px;"></div></div>
+  <div class="party-person"><div class="p-head"></div><div class="p-body" style="width:10px;height:42px;"></div></div>
+</div>
+
+<!-- Music bars -->
+<div class="music-bars">
+  <div class="music-bar" style="--speed:0.4s;--max-h:22px;animation-delay:0s;"></div>
+  <div class="music-bar" style="--speed:0.6s;--max-h:18px;animation-delay:-0.2s;"></div>
+  <div class="music-bar" style="--speed:0.5s;--max-h:28px;animation-delay:-0.1s;"></div>
+  <div class="music-bar" style="--speed:0.45s;--max-h:15px;animation-delay:-0.3s;"></div>
+  <div class="music-bar" style="--speed:0.55s;--max-h:24px;animation-delay:-0.15s;"></div>
+</div>
+
+<a href="perfectlife.html" class="breadcrumb">
+        The Perfect Life
+      </a>
+
+<div class="page-wrapper">
+  <div class="page-content">
+    <p class="mono a1" style="margin-bottom:1.5rem;color:var(--neon-purple);opacity:0.6;">The Rooftop · Everyone Knows</p>
+
+    <h2 class="a2" style="margin-bottom:1.5rem;color:var(--text-primary);">
+        They all acted like they already loved her.
+      </h2>
+
+    <div class="scene-text a3" style="margin-bottom:2.5rem;">
+      <p>Someone placed a glass in her hand.</p>
+      <p>Someone else called her by name before she had said it. They laughed at her jokes before she finished them. They remembered stories she had never told.</p>
+      <p>Everyone here wanted her.</p>
+      <p>Everyone here understood her.</p>
+      <p>Everyone here smiled the same way.</p>
+      <p>At first, it felt like being accepted.</p>
+      <p>Then she noticed the smiles did not change. Not when the music stopped. Not when the wind knocked over a glass. Not even when she asked, quietly, “How do you know me?”</p>
+      <p>The guests kept smiling.</p>
+      <p>Like they had been waiting for that question.</p>
+    </div>
+
+    <p class="choice-warning">Choose carefully. The train remembers.</p>
+<div class="decision-boxes">
+  <a class="decision-choice" href="ending2.html">
+    <span class="choice-main">Let yourself be loved here</span>
+    <span class="choice-hint">You choose the beautiful lie.</span>
+  </a>
+
+  <a class="decision-choice" href="perfect_glitch.html">
+    <span class="choice-main">Ask why everyone knows your name</span>
+    <span class="choice-hint">You break the fantasy.</span>
+  </a>
+
+  <a class="decision-choice" href="train.html">
+    <span class="choice-main">Return to the train</span>
+    <span class="choice-hint">You leave before the party becomes permanent.</span>
+  </a>
+</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+
