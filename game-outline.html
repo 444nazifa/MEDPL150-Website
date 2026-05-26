@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Train Between Worlds | Story Outline</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo">Nazifa Tabassum</div>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#statement">Statement</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#assignments">Assignments</a>
+    </nav>
+</header>
+
+<main class="assignment-article">
+    <div class="article-header">
+        <p class="assignment-label">Interactive Story Game · Part 1</p>
+        <h1>The Train Between Worlds</h1>
+    </div>
+
+    <h2>Story Description</h2>
+
+    <p>
+        <em>The Train Between Worlds</em> is a web-based nonlinear story about a girl who wakes up on a mysterious train with no memory of how she got there. The train travels between strange dreamlike stations, and each station represents something emotional that she has been avoiding. The story has a psychological horror atmosphere inspired by games like <em>Life is Strange</em>, <em>Telltale Games</em>, <em>Silent Hill</em>, and <em>Resident Evil</em>. The main character is mostly shown from behind so the player can imagine themselves in her place.
+    </p>
+
+    <p>
+        The story takes place on an abandoned train line, with different stations leading to different symbolic spaces. These include a quiet empty city, a perfect but fake life, a forgotten forest connected to childhood memories, and a flooded station where buried fears rise to the surface. The user makes choices about whether to avoid the truth, accept painful memories, choose comfort, stay in denial, or take control. Each choice leads to a different path or ending, so the player slowly discovers what the train represents.
+    </p>
+
+    <h2>Narrative Map</h2>
+
+    <pre class="narrative-map">
+START
+index.html
+“The Train Between Worlds”
+        |
+        v
+train.html
+“You are alone on the train.”
+        |
+        |--- The Quiet City
+        |       quietcity.html
+        |       |
+        |       |--- Follow the figure who looks like you
+        |       |       quiet_figure.html
+        |       |       |
+        |       |       |--- Follow the shadow to the front of the train
+        |       |       |       ending4.html
+        |       |       |       Ending 04: The Conductor
+        |       |       |
+        |       |       |--- Turn back before you vanish too
+        |       |               quietcity.html
+        |       |
+        |       |--- Hide inside the warm café
+        |       |       quiet_cafe.html
+        |       |       |
+        |       |       |--- Stay where nothing can hurt you
+        |       |       |       ending1.html
+        |       |       |       Ending 01: The Warm Room
+        |       |       |
+        |       |       |--- Leave before the room becomes a cage
+        |       |               quietcity.html
+        |       |
+        |       |--- Return to the train
+        |               train.html
+        |
+        |--- The Perfect Life
+        |       perfectlife.html
+        |       |
+        |       |--- Join the party where everyone loves you
+        |       |       perfect_party.html
+        |       |       |
+        |       |       |--- Let yourself be loved here
+        |       |       |       ending2.html
+        |       |       |       Ending 02: Perfect Enough
+        |       |       |
+        |       |       |--- Ask why everyone knows your name
+        |       |               perfect_glitch.html
+        |       |
+        |       |--- Look for what is wrong
+        |       |       perfect_glitch.html
+        |       |       |
+        |       |       |--- Ignore the loop and stay anyway
+        |       |       |       ending2.html
+        |       |       |       Ending 02: Perfect Enough
+        |       |       |
+        |       |       |--- Break the loop and find who controls it
+        |       |               ending4.html
+        |       |               Ending 04: The Conductor
+        |       |
+        |       |--- Return to the train
+        |               train.html
+        |
+        |--- The Forgotten Forest
+        |       forest.html
+        |       |
+        |       |--- Search the old backpack
+        |       |       forest_backpack.html
+        |       |       |
+        |       |       |--- Take the photo and find the child
+        |       |       |       forest_child.html
+        |       |       |
+        |       |       |--- Close the backpack
+        |       |               train.html
+        |       |
+        |       |--- Follow the child’s voice
+        |       |       forest_child.html
+        |       |       |
+        |       |       |--- Tell her, “I remember now.”
+        |       |       |       ending3.html
+        |       |       |       Ending 03: The Surface
+        |       |       |
+        |       |       |--- Sit beside her and say, “I’m sorry.”
+        |       |       |       ending_forest_apology.html
+        |       |       |
+        |       |       |--- Turn away before she looks at you
+        |       |               train.html
+        |       |
+        |       |--- Leave before you remember
+        |               train.html
+        |
+        |--- The Flooded Station
+                flooded.html
+                |
+                |--- Swim toward the drowned train
+                |       flooded_train.html
+                |       |
+                |       |--- Enter the drowned train and take the controls
+                |       |       ending4.html
+                |       |       Ending 04: The Conductor
+                |       |
+                |       |--- Swim back toward the light
+                |               ending3.html
+                |               Ending 03: The Surface
+                |
+                |--- Climb toward the surface
+                |       ending3.html
+                |       Ending 03: The Surface
+                |
+                |--- Return to the train
+                        train.html
+    </pre>
+
+    <h2>Possible Scene / Space</h2>
+
+    <div class="outline-image">
+        <img src="lonely_ride_through_a_forgotten_subway.png">
+    </div>
+
+    <p>
+        Possible scene from <em>The Train Between Worlds</em>: the main character sits alone inside the train, surrounded by darkness. This is the central space where the player chooses which emotional station to visit next.
+    </p>
+
+ <div class="outline-buttons">
+    <a href="media%20video%20game/index.html" class="download-btn">Play the Game</a>
+    <a href="index.html" class="download-btn">Back to Portfolio</a>
+</div>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <div class="copyright">
+            © 2026 Nazifa Tabassum. Student Portfolio.
+        </div>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/nazifa-tabassum-414039286/" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
